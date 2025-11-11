@@ -6,7 +6,7 @@
   <title>FashionFinder</title>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -20,10 +20,10 @@
           <span class="brand-sub">Street • Graphic • High-fashion</span>
         </div>
       </div>
-      <nav class="top-nav" aria-label="Main">
-        <a href="#" class="nav-link">Home</a>
-        <a href="#" class="nav-link">About</a>
-        <a href="#" class="nav-link">Contact</a>
+      <nav class="top-nav">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
       </nav>
     </div>
   </header>
@@ -33,39 +33,40 @@
     <section class="hero">
       <div class="container hero-inner">
         <div class="hero-left">
-          <h1 class="hero-title">Find the exact fit — from runway to street</h1>
-          <p class="hero-sub">Type a detailed description (color, brand, detail). Example: <em>green hoodie with shark teeth on the side</em></p>
+          <h1>Find the exact fit — from runway to street.</h1>
+          <p class="sub">Type a detailed description (color, brand, detail). Example: <em>green hoodie with shark teeth on the side</em></p>
 
-          <form id="searchForm" class="search-form" autocomplete="off">
+          <form id="searchForm" autocomplete="off">
             <div class="search-row">
-              <input id="query" name="q" type="search" placeholder='e.g. "green hoodie with shark teeth on the side"' required />
-              <button type="submit" class="btn-primary">Search</button>
+              <input id="query" name="q" type="search" placeholder='e.g. "graphic tee with flames"' required />
+              <button type="submit" class="btn">Search</button>
             </div>
 
             <div class="controls">
-              <label class="control-label">Max results
-                <select id="maxResults" aria-label="Max results">
+              <label>Max results:
+                <select id="maxResults">
                   <option value="5">5</option>
                   <option value="10" selected>10</option>
                   <option value="15">15</option>
                 </select>
               </label>
               <div class="example-tags">
-                <button type="button" class="tag">graphic</button>
-                <button type="button" class="tag">oversized</button>
-                <button type="button" class="tag">distressed</button>
+                <button type="button" class="tag color-1">🔥 Graphic</button>
+                <button type="button" class="tag color-2">💀 Oversized</button>
+                <button type="button" class="tag color-3">🦈 Street</button>
+                <button type="button" class="tag color-4">🌈 Neon</button>
+                <button type="button" class="tag color-5">👟 Designer</button>
               </div>
             </div>
           </form>
         </div>
 
         <div class="hero-right" aria-hidden="true">
-          <!-- decorative collage block -->
           <div class="collage">
-            <div class="tile t1"></div>
-            <div class="tile t2"></div>
-            <div class="tile t3"></div>
-            <div class="tile t4"></div>
+            <div class="tile t1" style="background-image: url('https://source.unsplash.com/collection/888146/600x600');"></div>
+            <div class="tile t2" style="background-image: url('https://source.unsplash.com/collection/1127163/600x600');"></div>
+            <div class="tile t3" style="background-image: url('https://source.unsplash.com/collection/895539/600x600');"></div>
+            <div class="tile t4" style="background-image: url('https://source.unsplash.com/collection/190727/600x600');"></div>
           </div>
         </div>
       </div>
@@ -73,14 +74,13 @@
 
     <div class="container">
       <div id="status" class="status">Ready</div>
-      <section id="results" class="results-grid" aria-live="polite"></section>
+      <section id="results" class="results-grid"></section>
     </div>
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div>© <strong>FashionFinder</strong> — demo • Netlify + Google Custom Search</div>
-      <div class="small">Want a cleaner look or a custom color palette? I can update it.</div>
+  <footer>
+    <div class="container">
+      <p>© 2025 <strong>FashionFinder</strong> — Built with Netlify + Google Search API</p>
     </div>
   </footer>
 
