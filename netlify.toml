@@ -1,0 +1,7 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# disable build command (we are using simple static files)
+[dev]
+  functions = "netlify/functions"

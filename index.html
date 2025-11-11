@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SmartStyle Finder — Demo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>SmartStyle Finder</h1>
+    <p>Describe the clothing item. Be specific (color, pattern, brand, detail).</p>
+  </header>
+
+  <main>
+    <form id="searchForm">
+      <input id="query" name="q" type="search" placeholder='e.g. "green hoodie with shark teeth on the side"' required />
+      <button type="submit">Search</button>
+    </form>
+
+    <section id="controls">
+      <label>Max results:
+        <select id="maxResults">
+          <option value="5">5</option>
+          <option value="10" selected>10</option>
+          <option value="15">15</option>
+        </select>
+      </label>
+    </section>
+
+    <div id="status"></div>
+    <section id="results"></section>
+  </main>
+
+  <footer>
+    <small>Demo built with Netlify functions + Google Custom Search API</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
