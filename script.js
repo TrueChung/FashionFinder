@@ -1,3 +1,4 @@
+// script.js
 const form = document.getElementById('searchForm');
 const resultsEl = document.getElementById('results');
 const statusEl = document.getElementById('status');
@@ -10,51 +11,53 @@ form.addEventListener('submit', async (e) => {
   const max = maxResultsEl.value || 10;
 
   resultsEl.innerHTML = '';
-  statusEl.textContent = '🔍 Searching...';
+  statusEl.textContent = '🔍 Searching (AI-enhanced)...';
 
   try {
-    const res = await fetch(`/.netlify/functions/search?q=${encodeURIComponent(q)}&num=${max}`);
-    if (!res.ok) throw new Error('Search request failed');
+    const res = await fetch(`/.netlify/functions/search?q=${encodeURIComponent(q)}&num=${encodeURIComponent(max)}`);
+    if (!res.ok) throw new Error('Search failed');
     const data = await res.json();
 
     if (!data.results || !data.results.length) {
-      statusEl.textContent = 'No results found.';
-      resultsEl.innerHTML = '<p>No matching products found.</p>';
+      statusEl.textContent = data.warning ? `⚠️ ${data.warning}` : 'No results found.';
+      resultsEl.innerHTML = '<p>No results found.</p>';
       return;
     }
 
-    statusEl.textContent = `✅ Found ${data.results.length} results`;
+    statusEl.textContent = `✅ Found ${data.results.length} results (AI-ranked)`;
     renderResults(data.results);
   } catch (err) {
     console.error(err);
     statusEl.textContent = '⚠️ Error: ' + err.message;
+    resultsEl.innerHTML = `<p class="error">Error: ${escapeHtml(err.message)}</p>`;
   }
 });
 
 function renderResults(items) {
-  resultsEl.innerHTML = items
-    .map(item => {
-      const img = item.image || 'https://via.placeholder.com/300x200?text=No+Image';
-      const price = item.price ? `<p><strong>💲 Price:</strong> ${escapeHtml(item.price)}</p>` : '';
-      return `
-        <article class="card">
-          <a href="${item.link}" target="_blank" rel="noopener noreferrer">
-            <img src="${img}" alt="${escapeHtml(item.title)}" />
-          </a>
-          <div>
-            <h3>${escapeHtml(item.title)}</h3>
-            <p>${escapeHtml(item.snippet || '')}</p>
-            ${price}
-            <div class="score">⭐ Score: ${item.score}</div>
+  resultsEl.innerHTML = items.map(item => {
+    const img = item.image || 'https://via.placeholder.com/400x280?text=No+Image';
+    const price = item.price ? `<div class="price-line">💲 ${escapeHtml(item.price)}</div>` : '';
+    const sim = (typeof item.similarity === 'number') ? `· sim ${(Math.round(item.similarity * 1000)/10)}%` : '';
+    const scoreBadge = (typeof item.score === 'number') ? `<span class="badge">score ${item.score}</span>` : '';
+    return `
+      <article class="card">
+        <a href="${item.link}" target="_blank" rel="noopener noreferrer">
+          <img src="${img}" alt="${escapeHtml(item.title)}" />
+        </a>
+        <div class="card-body">
+          <h3>${escapeHtml(item.title)}</h3>
+          <p class="snippet">${escapeHtml(item.snippet || '')}</p>
+          ${price}
+          <div class="meta">
+            ${scoreBadge}
+            <div class="sim">${sim}</div>
           </div>
-        </article>
-      `;
-    })
-    .join('');
+        </div>
+      </article>
+    `;
+  }).join('');
 }
 
 function escapeHtml(unsafe) {
-  return unsafe
-    ? unsafe.replace(/[&<"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '"': '&quot;', "'": '&#039;' }[m]))
-    : '';
+  return unsafe ? unsafe.replace(/[&<"']/g, m => ({'&':'&amp;','<':'&lt;','"':'&quot;',"'":'&#039;'}[m])) : '';
 }
