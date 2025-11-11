@@ -1,7 +1,7 @@
 {
-  "name": "smartstyle-finder",
+  "name": "FashionFinder",
   "version": "1.0.0",
-  "description": "SmartStyle Finder MVP",
+  "description": "FashionFinder MVP",
   "main": "index.js",
   "scripts": {
     "build": "echo no build"
