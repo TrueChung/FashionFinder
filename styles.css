@@ -145,3 +145,82 @@ footer .container{display:flex;justify-content:space-between;align-items:center;
   .controls{flex-direction:column;align-items:flex-start;gap:10px}
   .logo-mark{width:40px;height:40px}
 }
+/* ===================== */
+/* ABOUT MODAL STYLES */
+/* ===================== */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+.modal.show {
+  display: flex;
+  animation: fadeIn 0.25s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(6px);
+}
+
+.modal-content {
+  position: relative;
+  background: var(--card-bg);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 28px 24px;
+  width: 90%;
+  max-width: 640px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.75);
+  color: var(--text);
+  animation: slideUp 0.3s ease forwards;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-content h2 {
+  font-family: "Playfair Display", serif;
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 26px;
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.modal-content p {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 10px 0;
+}
+
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+  color: var(--accent-2);
+}

@@ -22,7 +22,7 @@
       </div>
       <nav class="top-nav">
         <a href="#">Home</a>
-        <a href="#">About</a>
+        <a href="#" id="aboutBtn">About</a>
         <a href="#">Contact</a>
       </nav>
     </div>
@@ -84,6 +84,45 @@
     </div>
   </footer>
 
+  <!-- About Modal -->
+  <div id="aboutModal" class="modal">
+    <div id="modalBackdrop" class="modal-backdrop"></div>
+    <div class="modal-content">
+      <button id="closeModal" class="close-btn">✕</button>
+      <h2>About FashionFinder</h2>
+      <p>
+        FashionFinder lets you search for clothing items using detailed text — colors, brands, and unique style details.
+        Whether you’re into streetwear, graphic designs, or luxury fits, it connects you to what matches your vibe.
+      </p>
+      <p>
+        Built for creators and trend-seekers, this site blends AI-driven search with curated fashion inspiration.
+      </p>
+    </div>
+  </div>
+
   <script src="script.js"></script>
+  <script>
+    // Modal functionality
+    const aboutBtn = document.getElementById("aboutBtn");
+    const aboutModal = document.getElementById("aboutModal");
+    const modalBackdrop = document.getElementById("modalBackdrop");
+    const closeModal = document.getElementById("closeModal");
+
+    aboutBtn.addEventListener("click", e => {
+      e.preventDefault();
+      aboutModal.classList.add("show");
+      document.body.style.overflow = "hidden";
+    });
+
+    closeModal.addEventListener("click", () => {
+      aboutModal.classList.remove("show");
+      document.body.style.overflow = "";
+    });
+
+    modalBackdrop.addEventListener("click", () => {
+      aboutModal.classList.remove("show");
+      document.body.style.overflow = "";
+    });
+  </script>
 </body>
 </html>
