@@ -4,36 +4,84 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>FashionFinder</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header>
-    <h1>FashionFinder</h1>
-    <p>Describe the clothing item. Be specific (color, pattern, brand, detail).</p>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="logo-mark">FF</div>
+        <div class="brand-text">
+          <span class="brand-name">FashionFinder</span>
+          <span class="brand-sub">Street • Graphic • High-fashion</span>
+        </div>
+      </div>
+      <nav class="top-nav" aria-label="Main">
+        <a href="#" class="nav-link">Home</a>
+        <a href="#" class="nav-link">About</a>
+        <a href="#" class="nav-link">Contact</a>
+      </nav>
+    </div>
   </header>
 
   <main>
-    <form id="searchForm">
-      <input id="query" name="q" type="search" placeholder='e.g. "green hoodie with shark teeth on the side"' required />
-      <button type="submit">Search</button>
-    </form>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-left">
+          <h1 class="hero-title">Find the exact fit — from runway to street</h1>
+          <p class="hero-sub">Type a detailed description (color, brand, detail). Example: <em>green hoodie with shark teeth on the side</em></p>
 
-    <section id="controls">
-      <label>Max results:
-        <select id="maxResults">
-          <option value="5">5</option>
-          <option value="10" selected>10</option>
-          <option value="15">15</option>
-        </select>
-      </label>
+          <form id="searchForm" class="search-form" autocomplete="off">
+            <div class="search-row">
+              <input id="query" name="q" type="search" placeholder='e.g. "green hoodie with shark teeth on the side"' required />
+              <button type="submit" class="btn-primary">Search</button>
+            </div>
+
+            <div class="controls">
+              <label class="control-label">Max results
+                <select id="maxResults" aria-label="Max results">
+                  <option value="5">5</option>
+                  <option value="10" selected>10</option>
+                  <option value="15">15</option>
+                </select>
+              </label>
+              <div class="example-tags">
+                <button type="button" class="tag">graphic</button>
+                <button type="button" class="tag">oversized</button>
+                <button type="button" class="tag">distressed</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="hero-right" aria-hidden="true">
+          <!-- decorative collage block -->
+          <div class="collage">
+            <div class="tile t1"></div>
+            <div class="tile t2"></div>
+            <div class="tile t3"></div>
+            <div class="tile t4"></div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <div id="status"></div>
-    <section id="results"></section>
+    <div class="container">
+      <div id="status" class="status">Ready</div>
+      <section id="results" class="results-grid" aria-live="polite"></section>
+    </div>
   </main>
 
-  <footer>
-    <small>Demo built with Netlify functions + Google Custom Search API</small>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© <strong>FashionFinder</strong> — demo • Netlify + Google Custom Search</div>
+      <div class="small">Want a cleaner look or a custom color palette? I can update it.</div>
+    </div>
   </footer>
 
   <script src="script.js"></script>
